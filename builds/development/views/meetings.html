@@ -1,0 +1,21 @@
+<section class="meetings cf">
+    <h1>Add Meetings</h1>
+    <form class="formgroup addmeeting cf"
+    name="myform"
+    ng-submit="addMeeting()"
+    novalidate>
+    
+    <div class="inputwrapper">
+        <input type="text" name="meetingname" placeholder="Meeting Name" ng-model="meetingname" ng-required="true">
+    </div>
+    <button type="submit" class="btn"
+        ng-disabled="myform.$invalid">+</button>
+    </form>
+
+    <br>
+    <h2>Your Meetings</h2>
+        <div class="meeting" ng-repeat="(key,meeting) in meetings"> <!-- esta es la meeting que defini dentro del scope en el controller -->
+            <button class="btn btn-delete tooltip" ng-click="deleteMeeting(key)"><span>Delete this meeting</span></button> <!-- boton configurado con CSS, ver el final de capitulo 04040 for more info -->
+            <span class="text">{{meeting.name}}</span>
+        </div>
+</section>
