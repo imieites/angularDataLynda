@@ -1,14 +1,9 @@
 myApp.controller('RegistrationController', 
-    function($scope, $firebaseAuth, $location){
-    // uso $firebaseAuth en vez de SimpleLogin, que ya no se usa en las nuevas versiones.
-    var ref = new Firebase('https://attendancetestapp.firebaseio.com/meetings');
-    var authObj = $firebaseAuth(ref);
+    function($scope, $firebaseAuth, $location, Authentication){
+    
 
     $scope.login = function() {
-        authObj.$authWithPassword({
-            email: $scope.user.email,
-            password: $scope.user.password
-        })
+        Authentication.login($scope.user)
         .then(function(user){
             $location.path('/meetings');
         })
