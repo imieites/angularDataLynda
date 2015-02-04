@@ -20,8 +20,8 @@ myApp.factory('Authentication', function($firebase, $firebaseAuth, FIREBASE_URL,
         register : function(user) {
             console.log('authentication.js: registering user')
             return authObj.$createUser({ email: user.email, password: user.password })
-            .then( function(userData) {
-                console.log("User " + userData.uid + " created successfully!");
+            .then(function(userData){
+                console.log(userData);
             });
         } // register
 
