@@ -1,5 +1,10 @@
 myApp.controller('StatusController', function($scope, $rootScope, $firebaseAuth, FIREBASE_URL, $location, Authentication){
 
+    $scope.logout = function(){
+        Authentication.logout();
+        $location.path('/login');
+    }; // logout
+
     var ref = new Firebase(FIREBASE_URL);
     var authObj = $firebaseAuth(ref);
 

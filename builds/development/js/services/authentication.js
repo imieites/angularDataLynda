@@ -1,5 +1,5 @@
 myApp.factory('Authentication', function($firebase, $firebaseAuth, FIREBASE_URL, $location, $rootScope) {
-    // uso $firebaseAuth en vez de SimpleLogin, que ya no se usa en las nuevas versiones.
+    // using $firebaseAuth instead of SimpleLogin 
 
     var ref = new Firebase(FIREBASE_URL);
     var authObj = $firebaseAuth(ref);
@@ -11,7 +11,19 @@ myApp.factory('Authentication', function($firebase, $firebaseAuth, FIREBASE_URL,
                 email: user.email,
                 password: user.password
             });
-        } //login
+        }, //login
+
+        logout : function(){
+            return authObj.$unauth();
+        }, // logout 
+
+        register : function(user) {
+            console.log('authentication.js: registering user')
+            return authObj.$createUser({ email: user.email, password: user.password })
+            .then( function(userData) {
+                console.log("User " + userData.uid + " created successfully!");
+            });
+        } // register
 
     } //myObject
 

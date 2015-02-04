@@ -14,7 +14,18 @@ myApp.controller('RegistrationController',
     } //login
 
     $scope.register = function() {
-        $location.path('/meetings');
+        console.log('registration.js: registering user')
+        Authentication.register($scope.user)
+        .then(function(user){
+            Authentication.login($scope.user);
+            $location.path('/meetings');
+        })
+        .catch(function(error) {
+            $scope.message = error.toString;
+        });
     } //register
+
+
+    
     
 }); //RegistrationController
