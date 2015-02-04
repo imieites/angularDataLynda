@@ -10,15 +10,11 @@ myApp.controller('StatusController', function($scope, $rootScope, $firebaseAuth,
 
     // angularfire no hace broadcast del evento de logeo, por lo que tengo que usar esto
     // más info en: http://stackoverflow.com/questions/27051669/the-rootscope-on-method-for-angular-is-not-being-triggered-when-i-call-it-w
-    authObj.$onAuth(function(authData) {
-        if (authData) {
-            console.log("Logged in as:", authData.password.email);
-            $scope.userEmail = authData.password.email;
-        } else {
-            console.log("Logged out");
-            $scope.userEmail = null;
-        }
-    });
-
+    
+    $rootScope.$on('$firebaseAuth:authWithPassword', function(e, authUser){
+        console.log('levanto el evento nomas');
+        console.log(authUser);
+        $scope.userEmail = authUser.userEmail;
+    }); //$firebaseAuth:login
 
 }); //StatusController

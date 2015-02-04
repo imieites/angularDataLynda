@@ -10,7 +10,11 @@ myApp.factory('Authentication', function($firebase, $firebaseAuth, FIREBASE_URL,
             return authObj.$authWithPassword({
                 email: user.email,
                 password: user.password
-            });
+            })
+            .then(function(authData){
+              $rootScope.$broadcast('$firebaseAuth:authWithPassword',authData);
+              return authData;
+          });
         }, //login
 
         logout : function(){
