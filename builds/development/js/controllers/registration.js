@@ -3,9 +3,9 @@ myApp.controller('RegistrationController',
     
 
     $scope.login = function() {
-        console.log('registration.js: logging in')
         Authentication.login($scope.user)
         .then(function(user){
+            console.log('registration.js: logged in user '+user.uid);
             $location.path('/meetings');
         })
         .catch(function(error) {
@@ -14,9 +14,9 @@ myApp.controller('RegistrationController',
     } //login
 
     $scope.register = function() {
-        console.log('registration.js: registering user')
         Authentication.register($scope.user)
         .then(function(user){
+            console.log('registration.js: registered user '+user.uid);
             Authentication.login($scope.user);
             $location.path('/meetings');
         })

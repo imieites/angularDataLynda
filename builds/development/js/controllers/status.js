@@ -12,10 +12,13 @@ myApp.controller('StatusController', function($scope, $rootScope, $firebaseAuth,
     // más info en: http://stackoverflow.com/questions/27051669/the-rootscope-on-method-for-angular-is-not-being-triggered-when-i-call-it-w
     
     $rootScope.$on('$firebaseAuth:authWithPassword', function(e, authUser){
-        $scope.userEmail = authUser.userEmail;
+        console.log('status.js: logged in user '+ authUser.uid);
+        $scope.userEmail = authUser.password.email;
+        console.log('status.js: la variable $scope.userEmail es '+ $scope.userEmail);
     }); //$firebaseAuth:authWithPassword
 
     $rootScope.$on('$firebaseAuth:logout', function(e, authUser){
+        console.log('status.js: logged out user '+ authUser.uid);
         $scope.userEmail = null;
     }); //$firebaseAuth:logout
 

@@ -6,13 +6,13 @@ myApp.factory('Authentication', function($firebase, $firebaseAuth, FIREBASE_URL,
 
     var myObject = {
         login : function(user) {
-            console.log('authentication.js: logging in')
             return authObj.$authWithPassword({
                 email: user.email,
                 password: user.password
             })
-            .then(function(authData){
-              $rootScope.$broadcast('$firebaseAuth:authWithPassword',authData);
+            .then(function(authData){ 
+              console.log('authentication.js: logged in user '+ authData.uid);
+              $rootScope.$broadcast('$firebaseAuth:authWithPassword',authData); // avisa al scope
               return authData;
           });
         }, //login
@@ -20,15 +20,18 @@ myApp.factory('Authentication', function($firebase, $firebaseAuth, FIREBASE_URL,
         logout : function(){
             return authObj.$unauth()
             .then(function(authData){
-              $rootScope.$broadcast('$firebaseAuth:unauth',authData);
-              return authData;
-          });
+                console.log('authentication.js: logged out user'+ authData.uid);
+                $rootScope.$broadcast('$firebaseAuth:unauth',authData); // avisa al scope
+                return authData;
+            });
         }, // logout 
 
         register : function(user) {
-            console.log('authentication.js: registering user')
+            
             return authObj.$createUser({ email: user.email, password: user.password })
             .then(function(regUser){
+                
+                console.log('authentication.js: registered user ' + regUser.uid);
                 var ref = new Firebase(FIREBASE_URL + 'users');
                 var firebaseUsers = $firebase(ref);
 
