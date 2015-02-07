@@ -45,7 +45,7 @@ myApp.factory('Authentication', function($firebase, $firebaseAuth, FIREBASE_URL,
 
                 firebaseUsers.$set(regUser.uid,userInfo);
 
-            }); // add user
+            }); // add user info
         } // register
 
     } //myObject

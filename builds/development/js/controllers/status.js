@@ -1,4 +1,4 @@
-myApp.controller('StatusController', function($scope, $rootScope, $firebaseAuth, FIREBASE_URL, $location, Authentication){
+myApp.controller('StatusController', function($scope, $rootScope, $firebase, $firebaseAuth, FIREBASE_URL, $location, Authentication){
 
     $scope.logout = function(){
         Authentication.logout();
@@ -13,13 +13,19 @@ myApp.controller('StatusController', function($scope, $rootScope, $firebaseAuth,
     
     $rootScope.$on('$firebaseAuth:authWithPassword', function(e, authUser){
         console.log('status.js: logged in user '+ authUser.uid);
-        $scope.userEmail = authUser.password.email;
-        console.log('status.js: la variable $scope.userEmail es '+ $scope.userEmail);
+        
+        var ref = new Firebase(FIREBASE_URL + 'users/' + authUser.uid);
+        var user = $firebase(ref).$asObject();
+
+        user.$loaded().then(function(){ // espero a que llegue la info del usuario desde la db
+            $rootScope.currentUser = user;
+        });
+
     }); //$firebaseAuth:authWithPassword
 
     $rootScope.$on('$firebaseAuth:logout', function(e, authUser){
-        console.log('status.js: logged out user '+ authUser.uid);
-        $scope.userEmail = null;
+        $rootScope.currentUser = null;
+        
     }); //$firebaseAuth:logout
 
 

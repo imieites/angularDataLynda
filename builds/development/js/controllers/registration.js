@@ -9,7 +9,7 @@ myApp.controller('RegistrationController',
             $location.path('/meetings');
         })
         .catch(function(error) {
-            $scope.message = error.toString;
+            $scope.message = error.toString();
         });
     } //login
 
