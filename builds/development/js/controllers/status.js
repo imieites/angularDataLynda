@@ -12,9 +12,12 @@ myApp.controller('StatusController', function($scope, $rootScope, $firebaseAuth,
     // más info en: http://stackoverflow.com/questions/27051669/the-rootscope-on-method-for-angular-is-not-being-triggered-when-i-call-it-w
     
     $rootScope.$on('$firebaseAuth:authWithPassword', function(e, authUser){
-        console.log('levanto el evento nomas');
-        console.log(authUser);
         $scope.userEmail = authUser.userEmail;
-    }); //$firebaseAuth:login
+    }); //$firebaseAuth:authWithPassword
+
+    $rootScope.$on('$firebaseAuth:logout', function(e, authUser){
+        $scope.userEmail = null;
+    }); //$firebaseAuth:logout
+
 
 }); //StatusController

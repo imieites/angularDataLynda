@@ -18,7 +18,11 @@ myApp.factory('Authentication', function($firebase, $firebaseAuth, FIREBASE_URL,
         }, //login
 
         logout : function(){
-            return authObj.$unauth();
+            return authObj.$unauth()
+            .then(function(authData){
+              $rootScope.$broadcast('$firebaseAuth:unauth',authData);
+              return authData;
+          });
         }, // logout 
 
         register : function(user) {
