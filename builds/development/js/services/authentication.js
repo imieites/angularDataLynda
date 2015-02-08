@@ -46,9 +46,18 @@ myApp.factory('Authentication', function($firebase, $firebaseAuth, FIREBASE_URL,
                 firebaseUsers.$set(regUser.uid,userInfo);
 
             }); // add user info
-        } // register
+        }, // register
+
+        signedIn: function() {
+            return authObj.user != null;
+        } // signedIn
 
     } //myObject
+
+    // add signedIn to the $rootScope
+    $rootScope.signedIn = function() {
+        return myObject.signedIn();
+    }
 
     return myObject;
 });
