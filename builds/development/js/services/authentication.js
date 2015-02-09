@@ -11,8 +11,10 @@ myApp.factory('Authentication', function($firebase, $firebaseAuth, FIREBASE_URL,
                 password: user.password
             })
             .then(function(authData){ 
-              console.log('authentication.js: logged in user '+ authData.uid);
-              $rootScope.$broadcast('$firebaseAuth:authWithPassword',authData); // avisa al scope
+                console.log('authentication.js: logged in user '+ authData.uid);
+
+                $rootScope.$broadcast('$firebaseAuth:authWithPassword',authData); // avisa al scope
+
               return authData;
           });
         }, //login
@@ -49,7 +51,7 @@ myApp.factory('Authentication', function($firebase, $firebaseAuth, FIREBASE_URL,
         }, // register
 
         signedIn: function() {
-            return authObj.user != null;
+            return $rootScope.currentUser != null;
         } // signedIn
 
     } //myObject
