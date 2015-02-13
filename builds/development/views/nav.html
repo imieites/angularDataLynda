@@ -2,7 +2,9 @@
     <ul>
         <li class="branding"><a ng-href="#/">angularData</a></li>
         <li>
-            <a ng-show="currentUser" ng-href="#/meetings">Meetings ({{howManyMeetings}})</a></li>
+            <a ng-show="currentUser" ng-href="#/meetings">Meetings 
+                <span ng-if="howManyMeetings > 0"> ({{howManyMeetings}})</span></a>
+        </li>
         <li><a ng-hide="currentUser" ng-href="#/login">Login</a></li>
         <li><a ng-hide="currentUser" ng-href="#/register">Register</a></li>
     </ul>
