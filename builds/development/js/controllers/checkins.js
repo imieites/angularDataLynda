@@ -47,10 +47,20 @@ myApp.controller('CheckinsController',
         } else {
             item.userState = 'expanded';
         }
-    }
+    } //showLove
 
-    $scope.giveLove = function(item, text){
-        // to do
-    }
+    $scope.giveLove = function(item, giftText){
+        var refLove = new Firebase(FIREBASE_URL + 'users/' + $scope.whichUser + 
+        '/meetings/' + $scope.whichMeeting + '/checkins/' + item.$id + '/awards');
+        var checkinsObj = $firebase(refLove);
+
+        var myData = {
+            name: giftText,
+            date: Firebase.ServerValue.TIMESTAMP
+        };
+
+        checkinsObj.$push(myData);
+
+    } //giveLove
 
 }); //CheckinsController
