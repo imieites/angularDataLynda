@@ -39,12 +39,12 @@
         <li ng-class="checkin.userState" ng-repeat="checkin in checkins | orderBy:order:direction | filter: {$id: recordId, $: query}">
             <div class="checkin">
                 <div class="buttons">
-                <button class="btn btn-love tooltip" 
-                ng-click="showLove(checkin)"><span>Show the Love</span></button> <!-- muestra la form de abajo para pasar love -->
+                    <button class="btn btn-love tooltip" 
+                    ng-click="showLove(checkin)"><span>Show the Love</span></button> <!-- muestra la form de abajo para pasar love -->
 
-                <button class="btn btn-delete tooltip" 
-                ng-click="deleteCheckin(checkin.$id)"><span>Delete this checkin</span></button> 
-                    </div>
+                    <button class="btn btn-delete tooltip" 
+                    ng-click="deleteCheckin(checkin.$id)"><span>Delete this checkin</span></button> 
+                </div>
                 
                 <div class="info">
                     <h2>{{checkin.firstname}} {{checkin.lastname}}</h2>
@@ -60,7 +60,10 @@
 
                     <ul class="awardslist cf">
                         <li class="cf" ng-repeat="(key, award) in checkin.awards">
-                            <div class="award">{{award.name}}</div>
+                            <div class="award">{{award.name}}
+                                <button class="btn btn-delete tooltip" 
+                    ng-click="deleteLove(checkin.$id, key)"><span>Delete this award</span></button> 
+                            </div>
                         </li>
                     </ul>
 
