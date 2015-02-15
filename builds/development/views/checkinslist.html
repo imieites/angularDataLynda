@@ -42,7 +42,7 @@
                     <button class="btn btn-love tooltip" 
                     ng-click="showLove(checkin)"><span>Show the Love</span></button> <!-- muestra la form de abajo para pasar love -->
 
-                    <button class="btn btn-delete tooltip" 
+                    <button class="btn btn-delete tooltip" confirmation-needed="Sure you want to delete the checkin?"
                     ng-click="deleteCheckin(checkin.$id)"><span>Delete this checkin</span></button> 
                 </div>
                 
@@ -61,7 +61,7 @@
                     <ul class="awardslist cf">
                         <li class="cf" ng-repeat="(key, award) in checkin.awards">
                             <div class="award">{{award.name}}
-                                <button class="btn btn-delete tooltip" 
+                                <button class="btn btn-delete tooltip" confirmation-needed="Sure you want to delete the award?"
                     ng-click="deleteLove(checkin.$id, key)"><span>Delete this award</span></button> 
                             </div>
                         </li>

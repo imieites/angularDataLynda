@@ -31,7 +31,7 @@
             <a class="btn btn-checkin tooltip" 
                 ng-href="#/checkins/{{currentUser.regUser}}/{{key}}"><span>Go to checkin URL</span></a> <!-- boton configurado con CSS, ver el capitulo 0603 for more info -->
 
-            <button class="btn btn-delete tooltip" 
+            <button class="btn btn-delete tooltip" confirmation-needed="Sure you want to delete the meeting?"
                 ng-click="deleteMeeting(key)"><span>Delete this meeting</span></button> <!-- boton configurado con CSS, ver el final de capitulo 0404 for more info -->
                 
             <span class="text">{{meeting.name}}</span>
