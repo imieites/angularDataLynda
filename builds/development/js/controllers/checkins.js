@@ -25,5 +25,9 @@ myApp.controller('CheckinsController',
         }); // data sent
     } //addCheckin
 
+    $scope.deleteCheckin = function(id){
+        var record = $firebase(ref); // apunta a la lista de checkins para esa meeting
+        record.$remove(id);
+    } //deleteCheckin
 
 }); //CheckinsController
