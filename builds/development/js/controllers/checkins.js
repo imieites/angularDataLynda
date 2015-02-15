@@ -3,6 +3,10 @@ myApp.controller('CheckinsController',
 
     $scope.whichMeeting = $routeParams.mId;
     $scope.whichUser = $routeParams.uId;
+    
+    // estos 2 son valores default para la checking list form
+    $scope.order="firstname";
+    $scope.direction="";
 
     var ref = new Firebase(FIREBASE_URL + 'users/' + $scope.whichUser + 
         '/meetings/' + $scope.whichMeeting + '/checkins');
