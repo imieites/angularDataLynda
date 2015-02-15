@@ -34,4 +34,9 @@ myApp.controller('CheckinsController',
         record.$remove(id);
     } //deleteCheckin
 
+    $scope.pickRandom = function() {
+        var whichRecord = Math.round(Math.random() * checkinsList.length);
+        $scope.recordId = checkinsList.$keyAt(whichRecord);
+    } //pickRandom
+
 }); //CheckinsController

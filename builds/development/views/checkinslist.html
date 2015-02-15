@@ -23,12 +23,20 @@
             <input type="radio" id="dirdescending" ng-model="direction" name="direction" value="reverse">
             <label for="dirdescending">asc</label>
 
-        </div>
+        </div> <!-- direction -->
+        
+        <div class="buttons cf">
+            <button ng-hide="recordId" class="btn btn-pick"
+            ng-click="pickRandom()">Pick Random</button>
 
-    </div>
+            <button ng-show="recordId" class="btn btn-reset"
+            ng-click="recordId=''">Reset Random</button>
+        </div> <!-- random button group -->
+
+    </div> <!-- search box -->
 
     <ul class="userlist cf">
-        <li ng-repeat="checkin in checkins | orderBy:order:direction | filter: query">
+        <li ng-repeat="checkin in checkins | orderBy:order:direction | filter: {$id: recordId, $: query}">
             <div class="checkin">
                 <div class="buttons">
                         <button class="btn btn-delete tooltip" 
