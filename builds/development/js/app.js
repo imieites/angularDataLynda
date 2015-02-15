@@ -22,6 +22,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
             templateUrl: 'views/checkins.html',
             controller: 'CheckinsController'
         }).
+        when('/checkins/:uId/:mId/checkinsList', {
+            templateUrl: 'views/checkinslist.html',
+            controller: 'CheckinsController'
+        }).
         otherwise({
             redirectTo: '/meetings'
         });
