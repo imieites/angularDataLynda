@@ -57,6 +57,13 @@
                         ng-model="checkin.giftText" placeholder="What are you giving?">
                         <button type="submit" class="btn" ng-disabled="myform.$invalid">+</button>
                     </form>
+
+                    <ul class="awardslist cf">
+                        <li class="cf" ng-repeat="(key, award) in checkin.awards">
+                            <div class="award">{{award.name}}</div>
+                        </li>
+                    </ul>
+
                 </div> <!-- showcheckins -->
 
             </div> <!-- checkin -->
